@@ -24,7 +24,11 @@
        <li class="nav-item">
         <a class="nav-link" href={{ path('security_registration') }}>Inscription</a>
     </ul>
+    {% if not app.user %}
     <a class="navbar-brand" href={{ path('security_login') }}>Connexion</a>
+     {% else %}
+    <a class="navbar-brand" href={{ path('security_logout') }}>Déconnexion</a>
+    {% endif %}
   </div>
 </nav>
     <div class=" container">
