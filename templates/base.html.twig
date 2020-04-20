@@ -21,8 +21,12 @@
       <li class="nav-item">
         <a class="nav-link" href={{ path('etudes') }}>Liste des Etudes</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href={{ path('etudes') }}>Plages</a>
+      </li>
        <li class="nav-item">
         <a class="nav-link" href={{ path('security_registration') }}>Inscription</a>
+        <li>
     </ul>
     {% if not app.user %}
     <a class="navbar-brand" href={{ path('security_login') }}>Connexion</a>

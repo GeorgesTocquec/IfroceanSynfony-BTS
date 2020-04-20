@@ -53,8 +53,6 @@ class Plage
      * @var int
      *
      * @ORM\Column(name="idLieu", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $idlieu;
 

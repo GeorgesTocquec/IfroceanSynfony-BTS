@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\PlageHasEtude;
+use App\Entity\Plage;
+use App\Entity\Etude;
+use App\Entity\Zone;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,15 +19,17 @@ class ZoneController extends AbstractController
     public function index($idEtude,$idPlage, Request $request)
     {
         $repository_plage=$this->getDoctrine()->getRepository(Plage::class);
-        $repository_plage_has_etude=$this->getDoctrine()->getRepository(PlageHasEtude::class);
         $repository_etude=$this->getDoctrine()->getRepository(Etude::class);
+        $repository_zone=$this->getDoctrine()->getRepository(Zone::class);
+        $repository_plage_has_etude=$this->getDoctrine()->getRepository(PlageHasEtude::class);
 
-        $plage=$repository_plage->find($idPlage);
+        $plage=$repository_plage->find($idPlage);       
         $etude=$repository_etude->find($idEtude);
+        $zone=$repository_zone->findAll();
 
-        $etude_has_plage= $repository->findBy( 
-            ['idetude' => $idEtude],
-            ['idplage' => $idPlage]
+        $etude_has_plage= $repository_plage_has_etude->findBy( 
+            array('idetude' => $idEtude,
+            'idplage' => $idPlage)
             ); 
         
 
@@ -30,6 +37,7 @@ class ZoneController extends AbstractController
             "etude_has_plages"=>$etude_has_plage,
              "plages" =>$plage,
              "etudes" =>$etude,
+             "zones" =>$zone,
         ]);
     }
 }

@@ -3,37 +3,50 @@
 {% block title %}Liste des Etudes{% endblock %}
 
 {% block body %}
-<h1>Liste des Plages en Lien avec l'{{ etudes.titreetude }}</h1>
+<h1>Liste des Zones en Lien avec la {{ plages.nomplage }} de l'{{ etudes.titreetude }}</h1>
 {% if app.user %}
 
    {% set foo = 0 %}
    {% for etude_has_plage in etude_has_plages %}
-      {% if  foo != etude_has_plage.idplage %}
-
+      
          <div class="card">
-         <div class="card-header">
-         {% set foo = etude_has_plage.idplage %}
-         
-            {% for plage in plages %}
-
-               {% if plage.idplage == etude_has_plage.idplage %}
-                  {{ plage.nomplage }}
-               {% endif %}
-               
-            {% endfor %} 
+         <div class="card-header"> 
+         {% for zone in zones %}
+            {% if  etude_has_plage.idzone == zone.idzone  %}
+                <h5 class="card-title">{{ zone.nomzone }}</h5> 
+            {% endif %}              
+         {% endfor %} 
 
             </div>
             <div class="card-body">
-               {# <h5 class="card-title">{{ etude.titreetude }}</h5> #}
                <p class="card-text">Id De l'étude à virer un jour : {{ etude_has_plage.idetude }}</p>
                   <p class="card-text">Id De la Plage à virer un jour : {{ etude_has_plage.idplage }}</p>
+                  <p class="card-text">Id De la Zone à virer un jour : {{ etude_has_plage.idzone }}</p> 
+                       <div class="position-relative">
+                       Angle 1 
+                     <div class="badge badge-primary text-wrap" style="width: 6rem, right: 100rem;">
+                    {{ etude_has_plage.angle1 }} 
+                        </div>  
+                         Angle 2 
+                     <div class="badge badge-primary text-wrap" style="width: 6rem, right: 100rem;">
+                    {{ etude_has_plage.angle2 }}
+                        </div>
+                         Angle 3 
+                     <div class="badge badge-primary text-wrap" style="width: 6rem, right: 100rem;">
+                    {{ etude_has_plage.angle3 }}
+                        </div>
+                         Angle 4 
+                     <div class="badge badge-primary text-wrap" style="width: 60rem, right: 100rem;">
+                    {{ etude_has_plage.angle4 }}
+                        </div> 
+                        </div>     
                <a href={{ path("zone",{"idEtude":etude_has_plage.idetude,"idPlage":etude_has_plage.idplage}) }} class="btn btn-info">Zone en liens avec La Plage</a> 
             </div>
             </div>  
 
             <br>
          
-         {% endif %}   
+           
    {% endfor %}
 
 {% else %}
