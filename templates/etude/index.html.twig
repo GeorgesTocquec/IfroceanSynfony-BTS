@@ -4,6 +4,8 @@
 
 {% block body %}
 <h1>Liste des Etudes</h1>
+{% if app.user %}
+
    {# <table class="table">
    <thead>
    <tr>
@@ -49,7 +51,11 @@
 
 </tbody>
 </table>
+{% else %}
 
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
 
+{% endif %}
 
 {% endblock %}

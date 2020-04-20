@@ -17,7 +17,7 @@ class RegistrationType extends AbstractType
             ->add('username')
             ->add('password', PasswordType::class, array('label' => 'Password'))
             ->add('confirm_password', PasswordType::class, array('label' => 'Password'))
-            ->add('idMetier')
+            // ->add('idMetier')
             
         ;
     }

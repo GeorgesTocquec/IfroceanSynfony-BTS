@@ -19,14 +19,14 @@ class Plage
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      */
-    public $idplage;
+    private $idplage;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nomPlage", type="string", length=255, nullable=false)
      */
-    public $nomplage;
+    private $nomplage;
 
     /**
      * @var string|null
@@ -41,13 +41,6 @@ class Plage
      * @ORM\Column(name="nombredespecePlage", type="integer", nullable=true)
      */
     private $nombredespeceplage;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="populationtotaledespecePlage", type="integer", nullable=true)
-     */
-    private $populationtotaledespeceplage;
 
     /**
      * @var int|null
@@ -102,18 +95,6 @@ class Plage
     public function setNombredespeceplage(?int $nombredespeceplage): self
     {
         $this->nombredespeceplage = $nombredespeceplage;
-
-        return $this;
-    }
-
-    public function getPopulationtotaledespeceplage(): ?int
-    {
-        return $this->populationtotaledespeceplage;
-    }
-
-    public function setPopulationtotaledespeceplage(?int $populationtotaledespeceplage): self
-    {
-        $this->populationtotaledespeceplage = $populationtotaledespeceplage;
 
         return $this;
     }

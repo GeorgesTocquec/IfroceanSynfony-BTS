@@ -17,16 +17,16 @@ class Etude
      *
      * @ORM\Column(name="idEtude", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    public $idetude;
+    private $idetude;
 
     /**
      * @var string|null
      *
      * @ORM\Column(name="titreEtude", type="string", length=255, nullable=true)
      */
-    public $titreetude;
+    private $titreetude;
 
     /**
      * @var \DateTime|null

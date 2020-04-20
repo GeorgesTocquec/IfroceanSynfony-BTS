@@ -17,14 +17,14 @@ class PlageHasEtude
      *
      * @ORM\Column(name="idPlage", type="integer", nullable=false)
      */
-    public $idplage;
+    private $idplage;
 
     /**
      * @var int
      *
      * @ORM\Column(name="idEtude", type="integer", nullable=false)
      */
-    public $idetude;
+    private $idetude;
 
     /**
      * @var int
