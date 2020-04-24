@@ -6,19 +6,8 @@
 <h1>Liste des Etudes</h1>
 {% if app.user %}
 
-   {# <table class="table">
-   <thead>
-   <tr>
-
-
-     <th>IdEtude</th>
-    <th>Titre de L'étude</th> 
-
-    
-
-   </tr>
-   </thead> #}
 <tbody>
+{% set foo = 0 %}
 {% for etude in etudes %}
 
 <div class="card">
@@ -26,27 +15,19 @@
     {{ etude.titreetude }}
   </div>
   <div class="card-body">
-    {# <h5 class="card-title">{{ etude.titreetude }}</h5> #}
+   <h2> Date de l'étude : <b> {{ dates[foo] }} </b></h2>
+   <h3>Nombre de Participant : <b>{{ etude.totalpersonneetude }} </b>Personnes aux totals</h3>
+
     <p class="card-text">Id De l'étude à virer un jour : {{ etude.idetude }}</p>
     <a href={{ path("etude_has_plage",{"id":etude.idetude}) }} class="btn btn-success">Plage en liens avec L'étude</a>
+    <a href="#"class="btn btn-info">Modifier la date de l'étude</a> 
+    <a href="#"class="btn btn-info">Indiquer le nombre de participant</a> 
   </div>
 </div>
 
 <br>
 
-    {# <tr>
-     <td>{{ etude.idetude }}</td>
-    <td>{{ etude.titreetude }}</td>
-
-     </tr>
-     <td>
-    <a href={{ path("etude_has_plage",{"id":etude.idetude}) }}
-    class="btn btn-primary"> 
-    Plage en liens avec L'étude</a>
-
-    </td>
-    <td> #}
-    
+ {% set foo = foo + 1 %}   
 {% endfor %}
 
 </tbody>
@@ -58,4 +39,6 @@
 
 {% endif %}
 
+
 {% endblock %}
+

@@ -17,8 +17,17 @@ class EtudeController extends AbstractController
     {
         $repository=$this->getDoctrine()->getRepository(Etude::class);
         $etude= $repository->findAll();
+
+        $dateEtude =array();
+
+        foreach ($etude as $date){
+            $valueDate = $date->getDateetude()->format('d-m-Y');
+            array_push($dateEtude,$valueDate );
+        }
+
         return $this->render('etude/index.html.twig', [
             "etudes"=>$etude,
+            "dates"=>$dateEtude,
         ]);
     }    
 

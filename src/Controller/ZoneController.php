@@ -32,12 +32,14 @@ class ZoneController extends AbstractController
             'idplage' => $idPlage)
             ); 
         
+        //    $dateEtude = $etude->getDateetude()->format('d/m/Y');
 
         return $this->render('zone/index.html.twig', [
             "etude_has_plages"=>$etude_has_plage,
              "plages" =>$plage,
              "etudes" =>$etude,
              "zones" =>$zone,
+            //  "dateetude" =>$dateEtude,
         ]);
     }
 }
