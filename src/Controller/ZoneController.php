@@ -31,7 +31,7 @@ class ZoneController extends AbstractController
             array('idetude' => $idEtude,
             'idplage' => $idPlage)
             ); 
-        
+
         //    $dateEtude = $etude->getDateetude()->format('d/m/Y');
 
         return $this->render('zone/index.html.twig', [

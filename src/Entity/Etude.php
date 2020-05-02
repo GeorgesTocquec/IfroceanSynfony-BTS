@@ -83,7 +83,4 @@ class Etude
 
         return $this;
     }
-
-
-
 }
