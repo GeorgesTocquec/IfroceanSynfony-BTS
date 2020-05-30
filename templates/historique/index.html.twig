@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique de  l'{{ etudes.titreetude }} {% endblock %}
+
+{% block body %}
+{% if app.user %}
+
+
+  <tbody>
+  <div class="card">
+    <div class="card-header">
+    <h2> Récapitulatif Pour l’ensemble des plages  de l'<b>{{ etudes.titreetude }}</b></h2>
+    </div>
+  {% set foo = 0 %}
+  {% for etude_has_espece in etude_has_especes %}
+ 
+    <div class="card-body">
+      {% for espece in especes %}
+          {% if etude_has_espece.idespece == espece.idespece %}
+              <h2> Espece : <b> {{ espece.nomespece }} </b></h2>
+          {% endif %}
+      {% endfor %}
+    <h3>Population totale  : <b>{{ etude_has_espece.nombreespece }} </b></h3>
+    </div>
+  <br>
+
+  {% set foo = foo + 1 %}   
+  {% endfor %}
+  {% if foo != 0 %}
+    Nombre d’espèces différentes rencontrées : {{foo}}
+      {% else %}
+      Aucune données disponible
+  {% endif %}
+
+  </div>
+
+
+
+  <br>
+  <div class="card">
+  <div class="card-header">
+  <h2> Récapitulatif Pour chaque Plage de l'<b>{{ etudes.titreetude }}</b> </h2>
+  </div>
+  <br>
+  {% set plagefoo = 0 %}
+  {% set array = [] %}
+
+  {% for PlageActuel in plage_has_especes %}
+      {% set titreAfficher = false %} 
+      {% if PlageActuel.idplage not in array %}   
+        {% for plage_has_espece in plage_has_especes %}
+          {% if PlageActuel.idplage == plage_has_espece.idplage %}  
+
+
+            {% if titreAfficher == false %}
+              <div class="card-header">
+              {% for plage in plages %}
+                  {% if plage_has_espece.idplage == plage.idplage  %}
+                      <h5> Nom de la Plage : <b> {{ plage.nomplage }} </b></h5>
+                  {% endif %}
+              {% endfor %}
+              </div>
+              {% set titreAfficher = true %}
+            {% endif %}
+
+
+
+            <div class="card-body">
+            {% for espece in especes %}
+              {% if plage_has_espece.idespece == espece.idespece %}
+                  <h2> Espece : <b> {{ espece.nomespece }} </b></h2>
+              {% endif %}
+            {% endfor %}
+            <h3>Population totale  : <b>{{ plage_has_espece.nombreespece }} </b></h3>
+            </div>
+            <br>
+          {% set plagefoo = plagefoo + 1 %}
+          {% endif %}
+
+
+
+
+
+        {% endfor %}
+
+        {% if plagefoo != 0 %}
+          Nombre d’espèces différentes rencontrées : {{plagefoo}}
+        {% else %}
+          Aucune données disponible
+        {% endif %}
+
+        {% set plagefoo = 0 %}
+        {% set array = array|merge([PlageActuel.idplage]) %}
+      {% endif %}
+    {% endfor %}
+
+
+  </div>
+  </tbody>
+  </table>
+
+  {% else %}
+
+      <a>Veuillez d'abord vous connectez sur un compte valide </a>
+      <a>Pour accéder au contenu des études </a>
+
+{% endif %}
+{% endblock %}

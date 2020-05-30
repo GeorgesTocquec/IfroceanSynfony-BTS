@@ -1,35 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prélèvement de la zone ...{% endblock %}
+{% block title %}Liste des Especes{% endblock %}
 
 {% block body %}
-{# <h1>Prélèvement</h1> #}
+<h1>Liste des Especes</h1>
 {% if app.user %}
+
+<tbody>
+{% for espece in especes %}
+
+<div class="card">
+  <div class="card-header">
+    {{ espece.nomespece }}
+  </div>
+  <div class="card-body">
+   <h2> Nombre : <b> {{ espece.nombretotale }} </b></h2>
+  
+
+
+  </div>
+</div>
+
 <br>
-
- {{ form_start(form) }} 
-  
-{{ form_row(form.nomespece, {'label': "Nom de L'espèce", 'attr': {'placeholder': 'Chien ...'}}) }}
-
-{# <div class="form-row align-items-center">
-    <div class="col-auto my-1">
-      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-        <option selected>Choose...</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-      </select>
-    </div> #}
-{{ form_row(form.nombretotale, {'label': 'Nombre d\'espece recensé'}) }}
-  
  
- <button  type="submit" class="btn btn-success">Confirmer le Prélèvement</button>
-{{ form_end(form) }} 
+{% endfor %}
+
+</tbody>
+</table>
+
+ <br> 
+
+<div class="card">
+  <h5 class="card-header">Ajouter une nouvelle Espece</h5>
+  <div class="card-body">
+    <h5 class="card-title"> </h5>
+    <p class="card-text"> </p>
+      <a href={{ path("ajout_espece") }} class="btn btn-info">Ajouter une nouvelle Espece</a>   
+  </div>
+</div>
+
+ <br> 
+
 {% else %}
 
 <a>Veuillez d'abord vous connectez sur un compte valide </a>
 <a>Pour accéder au contenu des études </a>
 
 {% endif %}
+
+
 {% endblock %}
+

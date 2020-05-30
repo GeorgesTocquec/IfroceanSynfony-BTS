@@ -42,9 +42,23 @@ class EtudeHasEspece
         return $this->idetude;
     }
 
+    public function setIdetude(int $idetude): self
+    {
+        $this->idetude = $idetude;
+
+        return $this;
+    }
+
     public function getIdespece(): ?int
     {
         return $this->idespece;
+    }
+
+    public function setIdespece(int $idespece): self
+    {
+        $this->idespece = $idespece;
+
+        return $this;
     }
 
     public function getNombreespece(): ?int

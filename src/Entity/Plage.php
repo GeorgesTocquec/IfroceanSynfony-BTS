@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Plage
@@ -17,13 +18,14 @@ class Plage
      *
      * @ORM\Column(name="idPlage", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idplage;
 
     /**
      * @var string
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="nomPlage", type="string", length=255, nullable=false)
      */
     private $nomplage;
@@ -31,6 +33,7 @@ class Plage
     /**
      * @var string|null
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="superficietotalePlage", type="string", length=10, nullable=true)
      */
     private $superficietotaleplage;
@@ -44,7 +47,8 @@ class Plage
 
     /**
      * @var int|null
-     *
+     * 
+     *@Assert\NotBlank
      * @ORM\Column(name="densiteespecePlage", type="integer", nullable=true)
      */
     private $densiteespeceplage;
@@ -105,6 +109,15 @@ class Plage
     public function setDensiteespeceplage(?int $densiteespeceplage): self
     {
         $this->densiteespeceplage = $densiteespeceplage;
+
+        return $this;
+    }
+
+
+    
+    public function setIdlieu(?int $idlieu): self
+    {
+        $this->idlieu = $idlieu;
 
         return $this;
     }

@@ -1,20 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlageController!{% endblock %}
+{% block title %}Liste des Plages{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<h1>Liste des Plages</h1>
+{% if app.user %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<tbody>
+{% for plage in plages %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Yux/Desktop/EPSI/B2/Projet Transversal/Projet Transversal dev Object/App14 Symfony/App14Symfony/src/Controller/PlageController.php'|file_link(0) }}">src/Controller/PlageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Yux/Desktop/EPSI/B2/Projet Transversal/Projet Transversal dev Object/App14 Symfony/App14Symfony/templates/plage/index.html.twig'|file_link(0) }}">templates/plage/index.html.twig</a></code></li>
-    </ul>
+<div class="card">
+  <div class="card-header">
+    {{ plage.nomplage }}
+  </div>
+  <div class="card-body">
+   <h2> Superficie totale de la Plage : <b> {{ plage.superficietotalePlage }} </b></h2>
+    {% for departement in departements %}
+        {% if departement.idlieu == plage.idlieu %}
+            <h3>Nom du Département : <b>{{ departement.nomdepartement }} </b></h3>
+            {% for commune in communes %}
+                {% if commune.idcommune == departement.idcommune %}
+                    <h3>Nom de la Commune : <b>{{ commune.nomcommune }} </b></h3>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+
+    {# <p class="card-text">Id De l'étude à virer un jour : {{ plage.idplage }}</p>
+    <a href={{ path("etude_has_plage",{"id":etude.idetude}) }} class="btn btn-success">Plage en liens avec L'étude</a>
+    <a href={{ path("update_date",{"idEtude":etude.idetude}) }} class="btn btn-info">Modifier la date de l'étude</a>  
+    <a href={{ path("update_participant",{"idEtude":etude.idetude}) }} class="btn btn-info">Indiquer le nombre de participant</a> 
+    <a href={{ path("historique",{"idEtude":etude.idetude}) }} class="btn btn-info">Historique de l'étude</a>    #}
+
+  </div>
 </div>
+
+<br>
+ 
+{% endfor %}
+
+</tbody>
+</table>
+
+<div class="card">
+  <h5 class="card-header">Ajouter une nouvelle Plage</h5>
+  <div class="card-body">
+    <h5 class="card-title"> </h5>
+    <p class="card-text"> </p>
+    <a href={{ path("ajout_plage") }} class="btn btn-info">Ajouter une nouvelle Plage</a>  
+  </div>
+</div>
+
+
+{% else %}
+
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
+
+{% endif %}
+
+
 {% endblock %}
+

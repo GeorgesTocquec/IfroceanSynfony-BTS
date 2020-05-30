@@ -33,6 +33,15 @@ class PlageHasEspece
     /**
      * @var int
      *
+     * @ORM\Column(name="idetude", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idetude;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="nombreEspece", type="integer", nullable=false)
      */
     private $nombreespece;
@@ -57,6 +66,18 @@ class PlageHasEspece
     public function setIdespece(int $idespece): self
     {
         $this->idespece = $idespece;
+
+        return $this;
+    }
+
+    public function getIdetude(): ?int
+    {
+        return $this->idetude;
+    }
+
+    public function setIdetude(int $idetude): self
+    {
+        $this->idetude = $idetude;
 
         return $this;
     }

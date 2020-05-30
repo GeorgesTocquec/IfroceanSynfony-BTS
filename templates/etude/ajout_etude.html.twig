@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification de la date de L'étude{% endblock %}
+{% block title %}Ajout d'une nouvelle étude{% endblock %}
 
 {% block body %}
-<h1>Indiquer la date</h1>
+<h1>Remplissez le formulaire</h1>
 {% if app.user %}
  {{ form_start(form) }}
- {{ form_row(form.dateetude) }}
+ {{ form_row(form.titreetude) }}
+  {{ form_row(form.dateetude) }}
+   {{ form_row(form.totalpersonneetude) }}
  <br>
  <button type="submit" class="btn btn-success">Confirmer </button>    
  {{ form_end(form) }} 
+
 {% else %}
 
 <a>Veuillez d'abord vous connectez sur un compte valide </a>

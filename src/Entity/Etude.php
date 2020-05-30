@@ -48,6 +48,13 @@ class Etude
         return $this->idetude;
     }
 
+    public function setIdetude(int $idetude): self
+    {
+        $this->idetude = $idetude;
+
+        return $this;
+    }
+
     public function getTitreetude(): ?string
     {
         return $this->titreetude;

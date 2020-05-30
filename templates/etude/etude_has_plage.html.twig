@@ -36,6 +36,19 @@
          {% endif %}   
    {% endfor %}
 
+    <br> 
+
+<div class="card">
+  <h5 class="card-header">Ajouter une Plage à l'étude</h5>
+  <div class="card-body">
+    <h5 class="card-title"> </h5>
+    <p class="card-text"> </p>
+       <a href={{ path("ajout_plage_has_etude",{"idEtude":etudes.idetude}) }} class="btn btn-info">Ajouter une Plage à l'étude</a>    
+  </div>
+</div>
+
+ <br> 
+
 {% else %}
 
 <a>Veuillez d'abord vous connectez sur un compte valide </a>

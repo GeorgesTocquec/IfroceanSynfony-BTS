@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * PlageHasEtude
@@ -38,6 +39,7 @@ class PlageHasEtude
     /**
      * @var int|null
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="Angle1", type="integer", nullable=true)
      */
     private $angle1;
@@ -45,6 +47,7 @@ class PlageHasEtude
     /**
      * @var int|null
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="Angle2", type="integer", nullable=true)
      */
     private $angle2;
@@ -52,6 +55,7 @@ class PlageHasEtude
     /**
      * @var int|null
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="Angle3", type="integer", nullable=true)
      */
     private $angle3;
@@ -59,6 +63,7 @@ class PlageHasEtude
     /**
      * @var int|null
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="Angle4", type="integer", nullable=true)
      */
     private $angle4;

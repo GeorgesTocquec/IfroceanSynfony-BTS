@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une nouvelle plage{% endblock %}
+
+{% block body %}
+<h1>Remplissez le formulaire</h1>
+{% if app.user %}
+ {{ form_start(form) }}
+ {{ form_row(form.nomplage) }}
+  {{ form_row(form.superficietotaleplage) }}
+   {{ form_row(form.densiteespeceplage) }}
+ <br>
+ {{ form_start(formDepartement) }}
+ {{ form_row(formDepartement.nomdepartement) }}
+ <br>
+  <button type="submit" class="btn btn-success">Confirmer </button>    
+ {{ form_end(formDepartement) }} 
+
+ {{ form_end(form) }} 
+
+{% else %}
+
+<a>Veuillez d'abord vous connectez sur un compte valide </a>
+<a>Pour accéder au contenu des études </a>
+
+{% endif %}
+
+
+{% endblock %}
