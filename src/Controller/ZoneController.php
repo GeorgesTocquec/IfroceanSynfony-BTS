@@ -7,6 +7,9 @@ use App\Entity\Plage;
 use App\Entity\Etude;
 use App\Entity\Zone;
 
+use App\Form\ZoneType;
+use App\Form\PlageHasEtudeType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +43,60 @@ class ZoneController extends AbstractController
              "etudes" =>$etude,
              "zones" =>$zone,
             //  "dateetude" =>$dateEtude,
+        ]);
+    }
+
+     /**
+     * @Route("/zone/ajout_zone/{idEtude}{idPlage}", name="ajout_zone")
+     */
+    public function AjoutZone($idEtude, $idPlage ,Request $request)
+    {
+        $PHE = new PlageHasEtude();
+        $zone = new Zone();
+
+        $formPHE= $this->createForm(PlageHasEtudeType::class, $PHE);
+        $formPHE->handleRequest($request);
+
+        $formZone= $this->createForm(ZoneType::class, $zone);
+        $formZone->handleRequest($request);
+
+        $repository_plage=$this->getDoctrine()->getRepository(Plage::class);
+
+        $plageData= $repository_plage->findOneby(['idplage' => $idPlage]);
+        $idEspeceData = $plageData->getIdplage();
+        $PHE->setIdplage($idEspeceData);
+        $PHE->setIdetude($idEtude);
+       
+
+        if($formZone->isSubmitted())
+        { 
+
+        
+           
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($PHE);
+            $em->flush(); 
+
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($zone);
+            $em->flush(); 
+
+            // $repository_etude=$this->getDoctrine()->getRepository(Etude::class);
+            // $etude= $repository_etude->findAll($idEtude);
+
+            // return $this->render(
+            //     'etude/etude_has_plage.html.twig',
+            //     ['id'  => $idEtude]
+            //   );
+            return $this->redirectToRoute("etudes");
+        }  
+       
+        
+        return $this->render('zone/ajout_zone.html.twig', [
+            'formPHE' => $formPHE->createView(),
+            'formZone' => $formZone->createView(),
+
         ]);
     }
 }

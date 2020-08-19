@@ -6,14 +6,15 @@
 <h1>Liste des Plages en Lien avec l'{{ etudes.titreetude }}</h1>
 {% if app.user %}
 
-   {% set foo = 0 %}
+
+   {% set array = [] %}
+
    {% for etude_has_plage in etude_has_plages %}
-      {% if  foo != etude_has_plage.idplage %}
+      {% if  etude_has_plage.idplage not in array %}
 
          <div class="card">
          <div class="card-header">
-         {% set foo = etude_has_plage.idplage %}
-         
+
             {% for plage in plages %}
 
                {% if plage.idplage == etude_has_plage.idplage %}
@@ -33,19 +34,23 @@
 
             <br>
          
-         {% endif %}   
+         {% endif %} 
+         {% set array = array|merge([etude_has_plage.idplage]) %}  
    {% endfor %}
 
     <br> 
-
-<div class="card">
-  <h5 class="card-header">Ajouter une Plage à l'étude</h5>
-  <div class="card-body">
-    <h5 class="card-title"> </h5>
-    <p class="card-text"> </p>
-       <a href={{ path("ajout_plage_has_etude",{"idEtude":etudes.idetude}) }} class="btn btn-info">Ajouter une Plage à l'étude</a>    
-  </div>
-</div>
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+   <div class="card">
+      <h5 class="card-header">Ajouter une Plage à l'étude</h5>
+      <div class="card-body">
+         <h5 class="card-title"> </h5>
+         <p class="card-text"> </p>
+         <a href={{ path("ajout_plage_has_etude",{"idEtude":etudes.idetude}) }} class="btn btn-info">Ajouter une Plage à l'étude</a>    
+      </div>
+   </div>
+   {% endif %}
+{% endfor %}
 
  <br> 
 

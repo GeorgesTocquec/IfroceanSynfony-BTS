@@ -58,9 +58,25 @@
             </div>  
 
             <br>
+
          
            
    {% endfor %}
+
+{% for role in app.user.roles  %}
+   {%  if role == 'ROLE_ADMIN' %}   
+   <div class="card">
+      <h5 class="card-header">Ajouter une nouvelle Zone</h5>
+      <div class="card-body">
+         <h5 class="card-title"> </h5>
+         <p class="card-text"> </p>
+         <a href={{ path("ajout_zone",{"idEtude":etudes.idetude, "idPlage":plages.idplage}) }} class="btn btn-info">Ajouter une nouvelle Zone</a>  
+      </div>
+   </div>
+   {% endif %}
+{% endfor %}
+ 
+ <br> 
 
 {% else %}
 

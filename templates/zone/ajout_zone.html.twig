@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajout d'une nouvelle plage{% endblock %}
+{% block title %}Ajout d'une nouvelle Zone{% endblock %}
 
 {% block body %}
 <h1>Remplissez le formulaire</h1>
@@ -13,14 +13,12 @@
 {{ form_row(formPHE.angle3) }}
 {{ form_row(formPHE.angle4) }}
 <br>
-   {{ form_start(formPlage) }}
-   {{ form_row(formPlage.nomplage) }}
+
       {{ form_start(formZone) }}
       {{ form_row(formZone.nomzone) }}
   <br>
   <button type="submit" class="btn btn-success">Confirmer </button>    
    {{ form_end(formZone) }} 
- {{ form_end(formPlage) }} 
 
  {{ form_end(formPHE) }} 
 

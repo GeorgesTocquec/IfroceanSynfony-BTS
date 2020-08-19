@@ -36,16 +36,18 @@
 </table>
 
  <br> 
- 
-<div class="card">
-  <h5 class="card-header">Ajouter une nouvelle Etude</h5>
-  <div class="card-body">
-    <h5 class="card-title"> </h5>
-    <p class="card-text"> </p>
-    <a href={{ path("ajout_etude") }} class="btn btn-info">Ajouter une nouvelle étude</a>  
-  </div>
-</div>
-
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+    <div class="card">
+      <h5 class="card-header">Ajouter une nouvelle Etude</h5>
+      <div class="card-body">
+        <h5 class="card-title"> </h5>
+        <p class="card-text"> </p>
+        <a href={{ path("ajout_etude") }} class="btn btn-info">Ajouter une nouvelle étude</a>  
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
  
  <br> 
   

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Zone
@@ -24,6 +25,7 @@ class Zone
     /**
      * @var string
      *
+     * @Assert\NotBlank
      * @ORM\Column(name="NomZone", type="string", length=255, nullable=false)
      */
     private $nomzone;

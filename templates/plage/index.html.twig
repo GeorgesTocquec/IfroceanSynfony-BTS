@@ -4,6 +4,7 @@
 
 {% block body %}
 <h1>Liste des Plages</h1>
+<h2>Bonjour {{ app.user.username }}</h2>
 {% if app.user %}
 
 <tbody>
@@ -43,15 +44,18 @@
 </tbody>
 </table>
 
-<div class="card">
-  <h5 class="card-header">Ajouter une nouvelle Plage</h5>
-  <div class="card-body">
-    <h5 class="card-title"> </h5>
-    <p class="card-text"> </p>
-    <a href={{ path("ajout_plage") }} class="btn btn-info">Ajouter une nouvelle Plage</a>  
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+  <div class="card">
+    <h5 class="card-header">Ajouter une nouvelle Plage</h5>
+    <div class="card-body">
+      <h5 class="card-title"> </h5>
+      <p class="card-text"> </p>
+      <a href={{ path("ajout_plage") }} class="btn btn-info">Ajouter une nouvelle Plage</a>  
+    </div>
   </div>
-</div>
-
+  {% endif %}
+{% endfor %}
 
 {% else %}
 

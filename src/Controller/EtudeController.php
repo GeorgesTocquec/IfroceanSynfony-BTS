@@ -6,7 +6,9 @@ namespace App\Controller;
 use App\Entity\Etude;
 use App\Entity\PlageHasEtude;
 use App\Entity\Plage;
+use App\Entity\Zone;
 use App\Form\EtudeType;
+use App\Form\ZoneType;
 use App\Form\PlageHasEtudeType;
 use App\Form\PlageFormForPHEType;
 use App\Form\UpdateDateType;
@@ -151,6 +153,7 @@ class EtudeController extends AbstractController
     {
         $PHE = new PlageHasEtude();
         $plage = new Plage();
+        $zone = new Zone();
 
         $formPHE= $this->createForm(PlageHasEtudeType::class, $PHE);
         $formPHE->handleRequest($request);
@@ -158,10 +161,13 @@ class EtudeController extends AbstractController
         $formPlage= $this->createForm(PlageFormForPHEType::class, $plage);
         $formPlage->handleRequest($request);
 
+        $formZone= $this->createForm(ZoneType::class, $zone);
+        $formZone->handleRequest($request);
+
         $repository_plage=$this->getDoctrine()->getRepository(Plage::class);
        
 
-        if($formPlage->isSubmitted() )
+        if($formZone->isSubmitted() )
         { 
 
             
@@ -176,8 +182,12 @@ class EtudeController extends AbstractController
             $em->persist($PHE);
             $em->flush(); 
 
-            $repository_etude=$this->getDoctrine()->getRepository(Etude::class);
-            $etude= $repository_etude->findAll($idEtude);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($zone);
+            $em->flush(); 
+
+            // $repository_etude=$this->getDoctrine()->getRepository(Etude::class);
+            // $etude= $repository_etude->findAll($idEtude);
 
             // return $this->render(
             //     'etude/etude_has_plage.html.twig',
@@ -191,6 +201,7 @@ class EtudeController extends AbstractController
         return $this->render('etude/ajout_plage_has_etude.html.twig', [
             'formPHE' => $formPHE->createView(),
             'formPlage' => $formPlage->createView(),
+            'formZone' => $formZone->createView(),
 
 
 

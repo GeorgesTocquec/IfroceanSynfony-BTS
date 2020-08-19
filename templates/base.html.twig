@@ -20,7 +20,7 @@
     <ul class="navbar-nav mr-auto">
     
       <li class="nav-item">
-        <a class="nav-link" href={{ path('etudes') }}>Liste des Etudes</a>
+        <a class="nav-link" href={{ path('etudes') }}>Etudes</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href={{ path('plage') }}>Plages</a>
@@ -29,11 +29,13 @@
         <a class="nav-link" href={{ path('historique') }}>Historique</a>
       </li> #}
         <li class="nav-item">
-        <a class="nav-link" href={{ path('espece') }}>Liste des Especes</a>
+        <a class="nav-link" href={{ path('espece') }}>Especes</a>
         <li>
+        {% if not app.user %}
        <li class="nav-item">
         <a class="nav-link" href={{ path('security_registration') }}>Inscription</a>
         <li>
+        {% endif %}
 
     </ul>
     {% if not app.user %}

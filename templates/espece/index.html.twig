@@ -30,16 +30,20 @@
 
  <br> 
 
-<div class="card">
-  <h5 class="card-header">Ajouter une nouvelle Espece</h5>
-  <div class="card-body">
-    <h5 class="card-title"> </h5>
-    <p class="card-text"> </p>
+{% for role in app.user.roles  %}
+  {%  if role == 'ROLE_ADMIN' %}
+  <div class="card">
+    <h5 class="card-header">Ajouter une nouvelle Espece</h5>
+    <div class="card-body">
+      <h5 class="card-title"> </h5>
+      <p class="card-text"> </p>
       <a href={{ path("ajout_espece") }} class="btn btn-info">Ajouter une nouvelle Espece</a>   
+    </div>
   </div>
-</div>
 
  <br> 
+ {% endif %}
+{% endfor %}
 
 {% else %}
 

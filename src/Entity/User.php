@@ -53,6 +53,11 @@ class User implements UserInterface
      */
     private $idMetier;
 
+     /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
 
 
     /**
@@ -120,6 +125,9 @@ class User implements UserInterface
     public function getSalt() {}
 
     public function getRoles() {
-        return ['ROLE_USER'];
+        if (empty($this->roles)) {
+            return ['ROLE_USER'];
+        }
+        return $this->roles;
     }
 }
